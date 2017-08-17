@@ -4,7 +4,7 @@
 
 void error_vprintf(const char *fmt, va_list ap)
 {
-    if (g_test_initialized()) {
+    if (g_test_initialized() && !g_test_subprocess()) {
         char *msg = g_strdup_vprintf(fmt, ap);
         g_test_message("%s", msg);
         g_free(msg);
